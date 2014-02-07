@@ -1,4 +1,4 @@
 from django.contrib import admin
-from whowin.models import 
+from whowin.models import Fighter, Fight
 
-admin.site.register(Poll)
+admin.site.register(Fighter, Fight)
