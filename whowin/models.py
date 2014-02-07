@@ -14,5 +14,5 @@ class Fight(models.Model):
 	def __unicode__(self):
 		return self.member1
 
-	#def fight(self):
-	#	rate_1vs1(member1.rating(), member2.rating())
+	def fight(self):
+		rate_1vs1(member1.rating(), member2.rating())
