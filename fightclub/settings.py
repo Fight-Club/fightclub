@@ -114,7 +114,9 @@ ROOT_URLCONF = "fightclub.urls"
 WSGI_APPLICATION = "fightclub.wsgi.application"
 
 TEMPLATE_DIRS = [
+    os.path.join(PROJECT_ROOT, "templates"),
     os.path.join(PACKAGE_ROOT, "templates"),
+    
 ]
 
 INSTALLED_APPS = [
