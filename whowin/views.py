@@ -8,4 +8,4 @@ from whowin.models import Fight
 
 class MatchView(generic.TemplateView):
 	model = Fight
-	template_name = 'whowin/templates/whowin/match.html'
+	template_name = 'whowin/match.html'
