@@ -9,3 +9,7 @@ from whowin.models import Fight
 class MatchView(generic.TemplateView):
 	model = Fight
 	template_name = 'whowin/match.html'
+
+class MatchResultsView(generic.TemplateView):
+	model = Fight
+	template_name = 'whowin/results.html'

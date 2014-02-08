@@ -12,7 +12,6 @@ class Fighter(models.Model):
 class Fight(models.Model):
 	member1 = models.ForeignKey(Fighter, related_name='fighter_1')
 	member2 = models.ForeignKey(Fighter, related_name='fighter_2')
-
 	def __unicode__(self):
 		return unicode(self.member1)
 
