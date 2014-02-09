@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "banner_base.html" %}
 
 {% load i18n %}
 
@@ -6,11 +6,11 @@
 
 {% block body_class %}home{% endblock %}
 
-{% block banner %}
-    <h1>{% trans "FightClub" %}</h1>
-    <p>
-        
-        Match!!!!
-    </p>
-    
+{% block content %}
+    <h2>Publishers</h2>
+    <ul>
+        {% for publisher in object_list %}
+            <li>{{ publisher.name }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

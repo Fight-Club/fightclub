@@ -11,6 +11,7 @@ class MatchView(generic.TemplateView):
 	template_name = 'whowin/match.html'
 
 class RankResultsView(generic.ListView):
-	model = Fighter
+	queryset = Fighter.objects.order_by('rating')
+	context_object_name = 'fighter_list'
 	template_name = 'whowin/results.html'
 
