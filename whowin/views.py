@@ -4,12 +4,13 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.template.response import TemplateResponse
 
-from whowin.models import Fight
+from whowin.models import Fight, Fighter
 
 class MatchView(generic.TemplateView):
 	model = Fight
 	template_name = 'whowin/match.html'
 
-class MatchResultsView(generic.TemplateView):
-	model = Fight
+class RankResultsView(generic.ListView):
+	model = Fighter
 	template_name = 'whowin/results.html'
+
