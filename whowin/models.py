@@ -14,7 +14,7 @@ class Fight(models.Model):
 	member2 = models.ForeignKey(Fighter, related_name='fighter_2')
 	
 	def __unicode__(self):
-		return unicode(self.member1)
+		return '%s v %s' % (self.member1, self.member2)
 
 	def fight(self):
 		rate_1vs1(member1.rating(), member2.rating())
