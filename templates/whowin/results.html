@@ -1,0 +1,19 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block banner %}
+	{% block content %}
+	    <h2>Rankings</h2>
+	    <ul>
+	        {% for fighter in object_list %}
+	            <li>{{ fighter.name }}</li>
+	        {% endfor %}
+	    </ul>
+	{% endblock %}
+    
+{% endblock %}
