@@ -6,11 +6,14 @@
 
 {% block body_class %}home{% endblock %}
 
-{% block content %}
-    <h2>Publishers</h2>
-    <ul>
-        {% for publisher in object_list %}
-            <li>{{ publisher.name }}</li>
-        {% endfor %}
-    </ul>
+{% block banner %}
+	{% block content %}
+	    <h2>Rankings</h2>
+	    <ul>
+	        {% for fighter in object_list %}
+	            <li>{{ fighter.name }}</li>
+	        {% endfor %}
+	    </ul>
+	{% endblock %}
+    
 {% endblock %}
