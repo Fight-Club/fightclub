@@ -6,11 +6,10 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 
 
-urlpatterns = patterns("",
-    url(r"^admin/", include(admin.site.urls)),
-    url(r"^account/", include("account.urls")),
-    url(r'^$', include('whowin.urls')),
-    url(r"^results/", include('whowin.urls')),
+urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^account/', include("account.urls")),
+    url(r'^match/', include('whowin.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
