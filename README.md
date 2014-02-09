@@ -1,21 +1,5 @@
-pinax-project-account
-=====================
+Fight Club
+----------
 
-a starter project the incorporates account features from django-user-accounts
-
-
-Usage:
-
-    django-admin.py startproject --template=https://github.com/pinax/pinax-project-account/zipball/master <project_name>
-
-Getting Started:
-
-    pip install virtualenv
-    virtualenv mysiteenv
-    source mysiteenv/bin/activate
-    pip install Django==1.6.1
-    django-admin.py startproject --template=https://github.com/pinax/pinax-project-account/zipball/master mysite
-    cd mysite
-    pip install -r requirements.txt
-    python manage.py syncdb
-    python manage.py runserver
+An app that will use the ELO rating system to rank Fighters.
+Players are given a random choice of two Fighters and have to decide who will win, Fighters ratings are then adjusted accordingly.

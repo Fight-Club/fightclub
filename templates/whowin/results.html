@@ -11,9 +11,8 @@
 	    <h2>Rankings</h2>
 	    <ul>
 	        {% for fighter in object_list %}
-	            <li>{{ fighter.name }}</li>
+	            <li>{{ fighter.name }} - {{ fighter.rating}}</li>
 	        {% endfor %}
 	    </ul>
 	{% endblock %}
-    
 {% endblock %}

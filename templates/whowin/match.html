@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "banner_base.html" %}
 
 {% load i18n %}
 
@@ -7,9 +7,10 @@
 {% block body_class %}home{% endblock %}
 
 {% block banner %}
-    <h1>{% trans "FightClub" %}</h1>
-    <p>
-        
-        Match!!!!
-    </p>
+    {% block content %}
+	    <h2>Fight!</h2>
+	    <ul>
+	            <li>{{ fight.member1.name }} v {{ fight.member2.name }}</li>
+	    </ul>
+	{% endblock %}
 {% endblock %}
