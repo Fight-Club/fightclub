@@ -12,11 +12,11 @@ def random_fight(request):
 
 
 class FightView(FormView):
-    template_name = 'match.html'
+    template_name = 'whowin/match.html'
     success_url = '/results/'
 
     def get_form(self, form_class):
-        fight = Fight.objects.get(id=self.kwargs.get("fight_id"))
+        fight = Fight.objects.order_by('?')[0]
         choices = [(fight.member1.id, fight.member1.name),
                    (fight.member2.id, fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
