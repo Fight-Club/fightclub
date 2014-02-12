@@ -1,14 +1,7 @@
 from django.views.generic import ListView
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-
-
-def random_fight(request):
-    fight = Fight.objects.order_by('?')[0]
-    return HttpResponseRedirect(reverse('fight_view', kwargs={"fight_id": str(fight.id)}))
 
 
 class FightView(FormView):

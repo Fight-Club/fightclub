@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from whowin.views import FightView, random_fight, RankResultsView
+from whowin.views import FightView, RankResultsView
 
 urlpatterns = patterns('',
     url(r'^$', FightView.as_view(), name='home'),
