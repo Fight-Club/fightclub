@@ -15,6 +15,3 @@ class Fight(models.Model):
 	
 	def __unicode__(self):
 		return '%s v %s' % (self.member1, self.member2)
-
-	def fight(self):
-		rate_1vs1(member1.rating(), member2.rating())
