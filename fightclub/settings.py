@@ -129,6 +129,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "whowin",
+    "south",
     
     # theme
     "bootstrapform",
