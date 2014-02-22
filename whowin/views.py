@@ -8,7 +8,7 @@ class FightView(FormView):
 
     fight = None
     template_name = 'whowin/match.html'
-    success_url = '/results/'
+    success_url = '/'
 
     def get_form(self, form_class):
         self.fight = Fight.objects.order_by('?')[0]
