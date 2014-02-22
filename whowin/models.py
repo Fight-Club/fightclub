@@ -1,5 +1,5 @@
 from django.db import models
-from elo import rate_1vs1
+
 
 class Fighter(models.Model):
 	name = models.CharField(max_length=50)
@@ -15,3 +15,14 @@ class Fight(models.Model):
 	
 	def __unicode__(self):
 		return '%s v %s' % (self.member1, self.member2)
+
+	def rankupdate(self, winner):
+		if winner == self.member1:
+			loser = self.member2
+		else:
+			loser = self.member1
+
+		winner.rating += 50
+		loser.rating += -50
+		loser.save()
+		winner.save()

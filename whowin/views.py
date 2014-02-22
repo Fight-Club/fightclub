@@ -5,23 +5,24 @@ from django.views.generic.edit import FormView
 
 
 class FightView(FormView):
+
+    fight = None
     template_name = 'whowin/match.html'
     success_url = '/results/'
 
     def get_form(self, form_class):
-        fight = Fight.objects.order_by('?')[0]
-        choices = [(fight.member1.id, fight.member1.name),
-                   (fight.member2.id, fight.member2.name)]
+        self.fight = Fight.objects.order_by('?')[0]
+        choices = [(self.fight.member1.id, self.fight.member1.name),
+                   (self.fight.member2.id, self.fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
         kwargs.update({"choices": choices})
         form = FighterSelectForm(**kwargs)
         return form
 
     def form_valid(self, form):
-        selected = Fighter.objects.get(id=form.cleaned_data['fighter_choices'])
-        selected.rating += 100  # Use any logic to change rating here
-        selected.save()
-        print("Fighter selected: {}".format(selected.name))
+        winner = Fighter.objects.get(id=form.cleaned_data['fighter_choices'])
+        self.fight.rankupdate(winner)
+        print("Fighter winner: {}".format(winner.name))
         return super(FightView, self).form_valid(form)
 	
 
