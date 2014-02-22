@@ -22,7 +22,11 @@ class Fight(models.Model):
 		else:
 			loser = self.member1
 
-		winner.rating += 50
-		loser.rating += -50
+		winnerval = 1 / (1 + 10 ** ((loser.rating - winner.rating)/400))
+		loserval = 1 - winnerval
+
+		winner.rating += 20 * (1 - winnerval)
+		loser.rating += 20 * (0 - loserval)
+		
 		loser.save()
 		winner.save()
