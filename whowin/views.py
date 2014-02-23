@@ -8,7 +8,7 @@ class FightView(FormView):
 
     fight = None
     template_name = 'whowin/match.html'
-    success_url = '/'
+    success_url = '/results/'
 
     def get_form(self, form_class):
         self.fight = Fight.objects.order_by('?')[0]
@@ -22,7 +22,6 @@ class FightView(FormView):
     def form_valid(self, form):
         winner = Fighter.objects.get(id=form.cleaned_data['fighter_choices'])
         self.fight.rankupdate(winner)
-        print("Fighter winner: {}".format(winner.name))
         return super(FightView, self).form_valid(form)
 	
 
