@@ -1,10 +1,13 @@
 import os
-
+import dj_database_url
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
+SECRET_KEY = os.environ['SECRET_KEY']
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = [
@@ -13,13 +16,14 @@ ADMINS = [
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "fightclub",
-        "USER": "fightclub"
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
+
+#DATABASES = {
+#   "default": {
+#        "ENGINE": "django.db.backends.postgresql_psycopg2",
+#       "NAME": "fightclub",
+#      "USER": "fightclub",
+#}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -77,9 +81,6 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = os.environ['SECRET_KEY']
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = [
