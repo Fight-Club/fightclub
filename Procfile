@@ -1,0 +1,1 @@
+web: gunicorn fightclub.wsgi --settings "$DJANGO_SETTINGS_MODULE"
