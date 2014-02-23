@@ -15,8 +15,9 @@ MANAGERS = ADMINS
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "dev.db",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "fightclub",
+        "USER": "fightclub"
     }
 }
 
