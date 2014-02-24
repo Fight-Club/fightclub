@@ -7,14 +7,14 @@ class Fighter(models.Model):
 	rating = models.DecimalField(default=1600, max_digits=8, decimal_places=2)
 	fightswon = models.IntegerField(default=0)
 	fightslost = models.IntegerField(default=0)
-	slug = models.SlugField(max_length=50, unique=True)
+	slug = models.SlugField(default=0, max_length=50, unique=True)
 
 	def __unicode__(self):
 	    return unicode(self.name)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
-		super(self).save(*args, **kwargs)
+		super(Fighter, self).save(*args, **kwargs)
 
 class Fight(models.Model):
 	member1 = models.ForeignKey(Fighter, related_name='fighter_1')
