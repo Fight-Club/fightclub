@@ -11,7 +11,7 @@
 	    <h2>Fighters</h2>
 	    <ul>
 	        {% for fighter in object_list %}
-	            <li><a href="{% url 'whowin:fighterdetail' fighter.name %}">{{ fighter.name }}</li>
+	            <li>{{ fighter.name }}</li>
 	        {% endfor %}
 	    </ul>
 	{% endblock %}
