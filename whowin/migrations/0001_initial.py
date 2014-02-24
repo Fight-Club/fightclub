@@ -13,7 +13,9 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('rating', self.gf('django.db.models.fields.DecimalField')(default=1600, max_digits=8, decimal_places=2)),
-            ('url', self.gf('django.db.models.fields.URLField')(default='', max_length=200)),
+            ('fightswon', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('fightslost', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(default=0, unique=True, max_length=50)),
         ))
         db.send_create_signal(u'whowin', ['Fighter'])
 
@@ -43,10 +45,12 @@ class Migration(SchemaMigration):
         },
         u'whowin.fighter': {
             'Meta': {'object_name': 'Fighter'},
+            'fightslost': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'fightswon': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'rating': ('django.db.models.fields.DecimalField', [], {'default': '1600', 'max_digits': '8', 'decimal_places': '2'}),
-            'url': ('django.db.models.fields.URLField', [], {'default': "''", 'max_length': '200'})
+            'slug': ('django.db.models.fields.SlugField', [], {'default': '0', 'unique': 'True', 'max_length': '50'})
         }
     }
 
