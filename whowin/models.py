@@ -4,7 +4,8 @@ from django.db import models
 class Fighter(models.Model):
 	name = models.CharField(max_length=50)
 	rating = models.DecimalField(default=1600, max_digits=8, decimal_places=2)
-	url = models.URLField(default='')
+	fightswon = models.IntegerField(default=0)
+	fightslost = models.IntegerField(default=0)
 
 	def __unicode__(self):
 	    return unicode(self.name)
