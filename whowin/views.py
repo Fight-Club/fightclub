@@ -2,13 +2,14 @@ from django.views.generic import ListView, DetailView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
+from django.shortcuts import redirect
 
 
 class FightView(FormView):
 
     fight = None
     template_name = 'whowin/match.html'
-    success_url = '/results/'
+    success_url = '/'
 
     def get_form(self, form_class):
         self.fight = Fight.objects.order_by('?')[0]
@@ -41,3 +42,6 @@ class FighterListView(ListView):
     template_name = 'whowin/fighterlist.html'
     context_object_name = 'all_fighters'
     queryset = Fighter.objects.order_by('name')
+
+def home_view(request):
+    return redirect('fight')

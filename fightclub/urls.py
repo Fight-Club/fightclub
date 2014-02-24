@@ -2,10 +2,12 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from whowin import views
 admin.autodiscover()
 
 
 urlpatterns = patterns('',
+	url(r'^$', views.home_view, name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^account/', include("account.urls")),
     url(r'^whowin/', include("whowin.urls")),
