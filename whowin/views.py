@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
@@ -26,7 +26,18 @@ class FightView(FormView):
 	
 
 class RankResultsView(ListView):
-	queryset = Fighter.objects.order_by('-rating')
-	context_object_name = 'fighter_list'
-	template_name = 'whowin/results.html'
+    queryset = Fighter.objects.order_by('-rating')
+    #change this to show top 10
+    context_object_name = 'fighter_list'
+    template_name = 'whowin/results.html'
 
+
+class FighterDetailView(DetailView):
+    model = Fighter
+    template_name = 'whowin/fighterdetail.html'
+
+
+class FighterListView(ListView):
+    template_name = 'whowin/fighterlist.html'
+    context_object_name = 'all_fighters'
+    queryset = Fighter.objects.order_by('name')
