@@ -4,6 +4,10 @@ from whowin.models import Fight, Fighter
 class Command(BaseCommand):
 
 	def handle(self, *args, **options):
+		all_fights = Fight.objects.all()
+		for fight in all_fights:
+			fight.delete()
+			
 		all_fighters = Fighter.objects.all()
 		for fighter1 in all_fighters:
 			for fighter2 in all_fighters:

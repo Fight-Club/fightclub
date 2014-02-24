@@ -27,7 +27,9 @@ class Fight(models.Model):
 		loserval = 1 - winnerval
 
 		winner.rating += 20 * (1 - winnerval)
+		winner.fightswon += 1
 		loser.rating += 20 * (0 - loserval)
+		loser.fightslost += 1
 		
 		loser.save()
 		winner.save()
