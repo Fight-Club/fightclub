@@ -1,7 +1,10 @@
 {% load i18n %}
 {% load account_tags %}
 {% load url from future %}
-
+<ul class="nav navbar-nav">
+    <li class="nav"><a href="{% url 'results' %}">Top 10</a></li>
+    <li class="nav"><a href="{% url 'list' %}">All Fighters</a></li>
+</ul>
 <ul class="nav navbar-nav navbar-right">
     {% if request.user.is_authenticated %}
         <li class="dropdown">
