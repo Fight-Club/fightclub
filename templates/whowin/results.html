@@ -2,13 +2,13 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Welcome" %}{% endblock %}
+{% block head_title %}{% trans "Rankings" %}{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
 {% block banner %}
 	{% block content %}
-	    <h2>Rankings</h2>
+	    <h2>Top 10</h2>
 	    <ul>
 	        {% for fighter in object_list %}
 	            <li>{{forloop.counter}} - <a href="{% url 'detail' fighter.slug %}">{{ fighter.name }}</a></li>
