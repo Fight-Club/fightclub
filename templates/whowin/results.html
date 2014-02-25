@@ -11,7 +11,7 @@
 	    <h2>Rankings</h2>
 	    <ul>
 	        {% for fighter in object_list %}
-	            <li>{{ fighter.name }} - {{ fighter.rating}}</li>
+	            <li>{{forloop.counter}} - <a href="{% url 'detail' fighter.slug %}">{{ fighter.name }}</a></li>
 	        {% endfor %}
 	    </ul>
 	{% endblock %}
