@@ -8,13 +8,16 @@ from django.core.urlresolvers import reverse
 
 
 class FightView(FormView):
-
-    template_name = 'whowin/match.html'
-    success_url = 'success'
+    
     fight = None
+    template_name = 'whowin/match.html'
+
+    def get_success_url(self): 
+        return reverse('home') 
+    
 
     def get_form(self, form_class):
-        self.fight = get_object_or_404(Fight, id=self.kwargs['id'])
+        self.fight = get_object_or_404(Fight, pk=self.kwargs['id'])
         choices = [(self.fight.member1.id, self.fight.member1.name),
                    (self.fight.member2.id, self.fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
