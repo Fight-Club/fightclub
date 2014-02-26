@@ -2,7 +2,9 @@ from django.views.generic import ListView, DetailView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 
 class FightView(FormView):
@@ -12,7 +14,7 @@ class FightView(FormView):
     fight = None
 
     def get_form(self, form_class):
-        self.fight = get_object_or_404(Fight, name=self.kwargs['pk'])
+        self.fight = get_object_or_404(Fight, id=self.kwargs['id'])
         choices = [(self.fight.member1.id, self.fight.member1.name),
                    (self.fight.member2.id, self.fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
@@ -43,5 +45,5 @@ class FighterListView(ListView):
     queryset = Fighter.objects.order_by('name')
 
 def home_view(request):
-    
-    return redirect('fight', kwargs={'fight_id': .pk})
+    next = Fight.objects.order_by('?')[0]
+    return HttpResponseRedirect(reverse('fight', kwargs={'id': next.pk}))
