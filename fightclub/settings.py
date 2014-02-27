@@ -7,6 +7,12 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 DEBUG = bool(os.environ.get('DEBUG', False))
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
 SECRET_KEY = os.environ['SECRET_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -68,7 +74,7 @@ STATIC_ROOT = os.path.join(PACKAGE_ROOT, "site_media", "static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = "/site_media/static/"
+STATIC_URL = S3_URL
 
 # Additional locations of static files
 STATICFILES_DIRS = [
