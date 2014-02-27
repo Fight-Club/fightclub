@@ -4,16 +4,18 @@ from django.template.defaultfilters import slugify
 
 class Fighter(models.Model):
 	name = models.CharField(max_length=50)
+	SIDE_CHOICES = (
+		('E', 'Evil'),
+		('G', 'Good'),
+		('N', 'Neutral'),
+		)
+	side = models.CharField(max_length=1, choices=SIDE_CHOICES, default='N')
+	description = models.TextField(default='')
+	slug = models.SlugField(default=0, max_length=50, unique=True)
 	rating = models.DecimalField(default=1600, max_digits=8, decimal_places=2)
 	fightswon = models.IntegerField(default=0)
 	fightslost = models.IntegerField(default=0)
-	slug = models.SlugField(default=0, max_length=50, unique=True)
-	side = (
-		('E', 'Evil')
-		('G', 'Good')
-		('N', 'Neutral'))
-	description = models.TextField()
-	
+
 	def __unicode__(self):
 	    return unicode(self.name)
 
