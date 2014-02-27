@@ -10,9 +10,10 @@
 	{% block content %}
 	    <h2>{{fighter.name}}</h2>
 	    <ul>
-	            <li>Rating: {{ fighter.rating }}</li>
 	            <li>Fights Won: {{ fighter.fightswon }}</li>
 	            <li>Fights Lost: {{ fighter.fightslost }}</li>
+	            <li>Side: {{ fighter.get_side_display }}</li>
+	            <li>Description: {{ fighter.description }}</li>
 	    </ul>
 	{% endblock %}
 {% endblock %}
