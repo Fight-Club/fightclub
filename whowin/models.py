@@ -8,13 +8,19 @@ class Fighter(models.Model):
 	fightswon = models.IntegerField(default=0)
 	fightslost = models.IntegerField(default=0)
 	slug = models.SlugField(default=0, max_length=50, unique=True)
-
+	side = (
+		('E', 'Evil')
+		('G', 'Good')
+		('N', 'Neutral'))
+	description = models.TextField()
+	
 	def __unicode__(self):
 	    return unicode(self.name)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		super(Fighter, self).save(*args, **kwargs)
+
 
 class Fight(models.Model):
 	member1 = models.ForeignKey(Fighter, related_name='fighter_1')
