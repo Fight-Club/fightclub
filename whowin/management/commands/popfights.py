@@ -14,10 +14,3 @@ class Command(BaseCommand):
 				if fighter1 != fighter2:
 					fight = Fight(member1=fighter1, member2=fighter2)
 					fight.save()
-
-		total = 0
-		for member in all_fighters:
-			total += member.fightswon
-			total += member.fightslost
-
-		print total/2
