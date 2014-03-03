@@ -1,8 +1,8 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
@@ -46,6 +46,16 @@ class FighterListView(ListView):
     template_name = 'whowin/fighterlist.html'
     context_object_name = 'all_fighters'
     queryset = Fighter.objects.order_by('name')
+
+def stats_view(request):
+    total = 0
+    all_fighters = Fighter.objects.all()
+    for member in all_fighters:
+        total += member.fightswon
+        total += member.fightslost
+    total = total/2
+
+    return render_to_response('whowin/stats.html', {'total': total})
 
 def home_view(request):
     next = Fight.objects.order_by('?')[0]

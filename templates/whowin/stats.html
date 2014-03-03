@@ -1,0 +1,16 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Stats" %}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block banner %}
+	{% block content %}
+	    <h2>Stats</h2>
+	    <ul>
+	        <p class="lead">{% trans "Total Fights Fought: " %}{{total}}</p>
+	    </ul>
+	{% endblock %}
+{% endblock %}
