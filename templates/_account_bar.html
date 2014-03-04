@@ -6,6 +6,7 @@
     <li class="nav"><a href="{% url 'results' %}">Top 10</a></li>
     <li class="nav"><a href="{% url 'list' %}">All Fighters</a></li>
     <li class="nav"><a href="{% url 'stats' %}">Stats</a></li>
+    <li class="nav"><a href="{% url 'about' %}">About</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
     {% if request.user.is_authenticated %}
