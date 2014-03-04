@@ -34,13 +34,13 @@ class FightView(FormView):
 class TopTenView(ListView):
     queryset = Fighter.objects.order_by('rank')[:10]
     context_object_name = 'fighter_list'
-    template_name = 'whowin/results.html'
+    template_name = 'whowin/topten.html'
 
 
 class BottomTenView(ListView):
     queryset = Fighter.objects.order_by('-rank')[:10]
     context_object_name = 'fighter_list'
-    template_name = 'whowin/results.html'
+    template_name = 'whowin/bottomten.html'
 
 
 class FighterDetailView(DetailView):
