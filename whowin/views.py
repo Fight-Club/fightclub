@@ -47,6 +47,9 @@ class FighterListView(ListView):
     context_object_name = 'all_fighters'
     queryset = Fighter.objects.order_by('name')
 
+class AboutView(TemplateView):
+    template_name = 'whowin/about.html'
+
 def stats_view(request):
     total = 0
     all_fighters = Fighter.objects.all()
