@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from whowin.views import FightView, FighterListView, RankResultsView, FighterDetailView
+from whowin.views import FightView, FighterListView, RankResultsView, FighterDetailView, AboutView
 from whowin import views
 
 urlpatterns = patterns('',
@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^results/$', RankResultsView.as_view(), name='results'),
     url(r'^fighters/(?P<slug>[\w-]+)/', FighterDetailView.as_view(), name='detail'),
     url(r'^stats/$', views.stats_view, name='stats'),
+    url(r'^about/$', AboutView.as_view(), name='about'),
     
 )
