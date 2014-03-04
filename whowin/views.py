@@ -56,7 +56,8 @@ class FighterListView(ListView):
 class AboutView(TemplateView):
     template_name = 'whowin/about.html'
 
-def stats_view(request):
+class StatsView(TemplateView):
+    template_name = 'whowin/stats.html'
     total = 0
     all_fighters = Fighter.objects.all()
     for member in all_fighters:
@@ -65,10 +66,11 @@ def stats_view(request):
     total = total/2
     num = Fighter.objects.count()
 
-    return render_to_response('whowin/stats.html',{
-                                                    'total': total,
-                                                    'numfighters': num,
-                                                    })
+    def get_context_data(self, **kwargs):
+        context = super(StatsView, self).get_context_data(**kwargs)
+        context['total'] = self.total
+        context['numfighters'] = self.num
+        return context
 
 def home_view(request):
     next = Fight.objects.order_by('?')[0]
