@@ -63,8 +63,12 @@ def stats_view(request):
         total += member.fightswon
         total += member.fightslost
     total = total/2
+    num = Fighter.objects.count()
 
-    return render_to_response('whowin/stats.html', {'total': total})
+    return render_to_response('whowin/stats.html',{
+                                                    'total': total,
+                                                    'numfighters': num,
+                                                    })
 
 def home_view(request):
     next = Fight.objects.order_by('?')[0]
