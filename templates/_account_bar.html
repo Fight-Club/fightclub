@@ -3,7 +3,8 @@
 {% load url from future %}
 <ul class="nav navbar-nav">
     <li class="nav"><a href="{% url 'home' %}">Fight Again? </a></li>
-    <li class="nav"><a href="{% url 'results' %}">Top 10</a></li>
+    <li class="nav"><a href="{% url 'topten' %}">Top 10</a></li>
+    <li class="nav"><a href="{% url 'bottomten' %}">Bottom 10</a></li>
     <li class="nav"><a href="{% url 'list' %}">All Fighters</a></li>
     <li class="nav"><a href="{% url 'stats' %}">Stats</a></li>
     <li class="nav"><a href="{% url 'about' %}">About</a></li>
