@@ -15,11 +15,15 @@ class Fighter(models.Model):
 	rating = models.DecimalField(default=1600, max_digits=8, decimal_places=2)
 	fightswon = models.IntegerField(default=0)
 	fightslost = models.IntegerField(default=0)
+	rank = models.IntegerField(default=0)
 
 	def __unicode__(self):
 	    return unicode(self.name)
 
 	def save(self, *args, **kwargs):
+		fighterlist = list(Fighter.objects.order_by('-rating'))
+		r = fighterlist.index(self)
+		self.rank = r +1
 		self.slug = slugify(self.name)
 		super(Fighter, self).save(*args, **kwargs)
 
