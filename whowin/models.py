@@ -21,7 +21,7 @@ class Fighter(models.Model):
 	    return unicode(self.name)
 
 	def save(self, *args, **kwargs):
-		fighterlist = list(Fighter.objects.order_by('-rating'))
+		fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
 		r = fighterlist.index(self)
 		self.rank = r +1
 		self.slug = slugify(self.name)
