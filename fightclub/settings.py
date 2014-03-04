@@ -16,6 +16,8 @@ S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
 TEMPLATE_DEBUG = DEBUG
 
+SITE_NAME = 'TheFightClub'
+
 ADMINS = [
     # ("Your Name", "your_email@example.com"),
 ]
