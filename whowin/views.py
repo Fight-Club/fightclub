@@ -32,12 +32,16 @@ class FightView(FormView):
 	
 
 class TopTenView(ListView):
+    for fighter in Fighter.objects.all():
+        fighter.save()
     queryset = Fighter.objects.order_by('rank')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/topten.html'
 
 
 class BottomTenView(ListView):
+    for fighter in Fighter.objects.all():
+        fighter.save()
     queryset = Fighter.objects.order_by('-rank')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/bottomten.html'
