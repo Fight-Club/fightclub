@@ -10,7 +10,7 @@
 	{% block content %}
 	    <h2>Bottom 10</h2>
 	    <ul>
-	        {% for fighter in object_list %}
+	        {% for fighter in object_list reversed %}
 	            <li>{{ fighter.rank }} - <a href="{% url 'detail' fighter.slug %}">{{ fighter.name }}</a></li>
 	        {% endfor %}
 	    </ul>
