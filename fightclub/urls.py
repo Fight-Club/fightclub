@@ -7,12 +7,12 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-	url(r'^$', views.home_view, name='home'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^account/', include("account.urls")),
-    url(r'^whowin/', include("whowin.urls")),
-    
-    
-)
+                       url(r'^$', views.home_view, name='home'),
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^account/', include("account.urls")),
+                       url(r'^whowin/', include("whowin.urls")),
+
+
+                       )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

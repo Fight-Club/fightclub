@@ -1,7 +1,8 @@
 import os
 import dj_database_url
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = bool(os.environ.get('DEBUG', False))
@@ -26,7 +27,7 @@ MANAGERS = ADMINS
 
 DATABASES = {'default': dj_database_url.config()}
 
-#DATABASES = {
+# DATABASES = {
 #   "default": {
 #        "ENGINE": "django.db.backends.postgresql_psycopg2",
 #       "NAME": "fightclub",
@@ -126,7 +127,7 @@ WSGI_APPLICATION = "fightclub.wsgi.application"
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),
     os.path.join(PACKAGE_ROOT, "templates"),
-    
+
 ]
 
 INSTALLED_APPS = [
@@ -140,16 +141,16 @@ INSTALLED_APPS = [
 
     "whowin",
     "south",
-    
+
     # theme
     "bootstrapform",
     "pinax_theme_bootstrap",
-    
+
     # external
     "account",
     "eventlog",
     "metron",
-    
+
     # project
     "fightclub",
 ]
