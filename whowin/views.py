@@ -2,19 +2,18 @@ from django.views.generic import ListView, DetailView, TemplateView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 class FightView(FormView):
-    
+
     fight = None
     template_name = 'whowin/match.html'
 
-    def get_success_url(self): 
-        return reverse('home') 
-    
+    def get_success_url(self):
+        return reverse('home')
 
     def get_form(self, form_class):
         self.fight = get_object_or_404(Fight, pk=self.kwargs['id'])
@@ -26,16 +25,17 @@ class FightView(FormView):
         return form
 
     def form_valid(self, form):
-        winner = Fighter.objects.get(id=form.cleaned_data['who_would_win_in_a_fight_between'])
+        winner = Fighter.objects.get(
+            id=form.cleaned_data['who_would_win_in_a_fight_between'])
         self.fight.rankupdate(winner)
         return super(FightView, self).form_valid(form)
-	
+
 
 class TopTenView(ListView):
     fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
     for fighter in fighterlist:
         r = fighterlist.index(fighter)
-        fighter.rank = r +1
+        fighter.rank = r + 1
         fighter.save()
     queryset = Fighter.objects.order_by('rank')[:10]
     context_object_name = 'fighter_list'
@@ -46,9 +46,9 @@ class BottomTenView(ListView):
     fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
     for fighter in fighterlist:
         r = fighterlist.index(fighter)
-        fighter.rank = r +1
+        fighter.rank = r + 1
         fighter.save()
-        
+
     queryset = Fighter.objects.order_by('-rank')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/bottomten.html'
@@ -64,8 +64,10 @@ class FighterListView(ListView):
     context_object_name = 'all_fighters'
     queryset = Fighter.objects.order_by('name')
 
+
 class AboutView(TemplateView):
     template_name = 'whowin/about.html'
+
 
 class StatsView(TemplateView):
     template_name = 'whowin/stats.html'
@@ -74,7 +76,7 @@ class StatsView(TemplateView):
     for member in all_fighters:
         total += member.fightswon
         total += member.fightslost
-    total = total/2
+    total = total / 2
     num = Fighter.objects.count()
 
     def get_context_data(self, **kwargs):
@@ -82,6 +84,7 @@ class StatsView(TemplateView):
         context['total'] = self.total
         context['numfighters'] = self.num
         return context
+
 
 def home_view(request):
     next = Fight.objects.order_by('?')[0]

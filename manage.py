@@ -7,7 +7,7 @@ def read_env():
             content = f.read()
     except IOError:
         content = ''
- 
+
     for line in content.splitlines():
         trimmed_line = line.replace(" ","")
         m1 = re.match(r'\A([A-Za-z_0-9]+)=(.*)\Z', trimmed_line)
