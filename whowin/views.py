@@ -75,8 +75,6 @@ class StatsView(TemplateView):
     all_fighters = Fighter.objects.all()
     for member in all_fighters:
         total += member.fightswon
-        total += member.fightslost
-    total = total / 2
     num = Fighter.objects.count()
 
     def get_context_data(self, **kwargs):
