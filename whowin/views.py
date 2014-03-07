@@ -2,7 +2,6 @@ from django.views.generic import ListView, DetailView, TemplateView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-# from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from random import randint
