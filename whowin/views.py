@@ -36,7 +36,8 @@ class TopTenView(ListView):
     for fighter in fighterlist:
         r = fighterlist.index(fighter)
         r += 1
-        fighter.update(rank=r)
+        fighter.rank = r
+        fighter.save()
     queryset = Fighter.objects.order_by('rank')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/topten.html'
@@ -47,7 +48,8 @@ class BottomTenView(ListView):
     for fighter in fighterlist:
         r = fighterlist.index(fighter)
         r += 1
-        fighter.update(rank=r)
+        fighter.rank = r
+        fighter.save()
     queryset = Fighter.objects.order_by('-rank')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/bottomten.html'
