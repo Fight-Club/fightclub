@@ -28,6 +28,8 @@ class Fighter(models.Model):
 class Fight(models.Model):
     member1 = models.ForeignKey(Fighter, related_name='fighter_1')
     member2 = models.ForeignKey(Fighter, related_name='fighter_2')
+    start = models.DateTimeField(auto_now_add=True)
+    end = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return '%s v %s' % (self.member1, self.member2)
