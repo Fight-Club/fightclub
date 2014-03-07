@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from datetime import datetime
 
 
 class Fighter(models.Model):
@@ -28,8 +29,8 @@ class Fighter(models.Model):
 class Fight(models.Model):
     member1 = models.ForeignKey(Fighter, related_name='fighter_1')
     member2 = models.ForeignKey(Fighter, related_name='fighter_2')
-    start = models.DateTimeField(auto_now_add=True)
-    end = models.DateTimeField(auto_now=True)
+    start = models.DateTimeField(auto_now_add=True, default=datetime.now())
+    end = models.DateTimeField(auto_now=True, default=datetime.now())
 
     def __unicode__(self):
         return '%s v %s' % (self.member1, self.member2)
