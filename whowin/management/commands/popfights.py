@@ -9,9 +9,9 @@ class Command(BaseCommand):
         for fight in all_fights:
             fight.delete()
 
-        all_fighters = Fighter.objects.all()
-        for fighter1 in all_fighters:
-            for fighter2 in all_fighters:
-                if fighter1 != fighter2:
-                    fight = Fight(member1=fighter1, member2=fighter2)
-                    fight.save()
+        # all_fighters = Fighter.objects.all()
+        # for fighter1 in all_fighters:
+        #     for fighter2 in all_fighters:
+        #         if fighter1 != fighter2:
+        #             fight = Fight(member1=fighter1, member2=fighter2)
+        #             fight.save()
