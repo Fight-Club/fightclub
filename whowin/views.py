@@ -2,9 +2,10 @@ from django.views.generic import ListView, DetailView, TemplateView
 from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from random import randint
 
 
 class FightView(FormView):
@@ -16,7 +17,9 @@ class FightView(FormView):
         return reverse('home')
 
     def get_form(self, form_class):
-        self.fight = get_object_or_404(Fight, pk=self.kwargs['id'])
+        a = Fighter.objects.get(id=self.kwargs['f1'])
+        b = Fighter.objects.get(id=self.kwargs['f2'])
+        self.fight = Fight(member1=a, member2=b)
         choices = [(self.fight.member1.id, self.fight.member1.name),
                    (self.fight.member2.id, self.fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
@@ -86,5 +89,14 @@ class StatsView(TemplateView):
 
 
 def home_view(request):
-    next = Fight.objects.order_by('?')[0]
-    return HttpResponseRedirect(reverse('fight', kwargs={'id': next.pk}))
+    last = Fighter.objects.count() - 1
+    index1 = randint(0, last)
+    index2 = randint(0, last - 1)
+    if index2 == index1:
+        index2 = last
+    fi1 = Fighter.objects.all()[index1]
+    fi2 = Fighter.objects.all()[index2]
+
+    return HttpResponseRedirect(reverse('fight', kwargs={'f1': fi1.id,
+                                                         'f2': fi2.id
+                                                         }))
