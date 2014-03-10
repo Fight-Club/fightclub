@@ -16,6 +16,10 @@ class FightView(FormView):
         return reverse('home')
 
     def get_form(self, form_class):
+
+        if self.kwargs['f1'] == self.kwargs['f2']:
+            self.template_name = '404.html'
+
         a = Fighter.objects.get(id=self.kwargs['f1'])
         b = Fighter.objects.get(id=self.kwargs['f2'])
         self.fight = Fight(member1=a, member2=b)
