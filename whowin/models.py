@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from datetime import datetime
+from django.contrib.auth.models import User
 
 
 class Fighter(models.Model):
@@ -29,6 +29,7 @@ class Fighter(models.Model):
 class Fight(models.Model):
     member1 = models.ForeignKey(Fighter, related_name='fighter_1')
     member2 = models.ForeignKey(Fighter, related_name='fighter_2')
+    user = models.ForeignKey(User, null=True, blank=True)
 
     winner = models.ForeignKey(Fighter, related_name='winner', null=True, blank=True)
     winner_start_rank = models.IntegerField(null=True, blank=True)
