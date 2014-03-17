@@ -19,7 +19,7 @@ class Fighter(models.Model):
     rank = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return unicode(self.name)
+        return '%s' % (self.name)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -30,7 +30,6 @@ class Fight(models.Model):
     member1 = models.ForeignKey(Fighter, related_name='fighter_1')
     member2 = models.ForeignKey(Fighter, related_name='fighter_2')
     user = models.ForeignKey(User, null=True, blank=True)
-
 
     member1_start_rank = models.IntegerField(null=True, blank=True)
     member1_end_rank = models.IntegerField(null=True, blank=True)
@@ -49,19 +48,19 @@ class Fight(models.Model):
     def __unicode__(self):
         return '%s - %s v %s' % (self.start, self.winner, self.loser)
 
-    def rankupdate(self, winner):
-        if winner == self.member1:
-            loser = self.member2
+    def rankupdate(self, win):
+        if win == self.member1:
+            lose = self.member2
         else:
-            loser = self.member1
+            lose = self.member1
 
-        winnerval = 1 / (1 + 10 ** ((loser.rating - winner.rating) / 400))
+        winnerval = 1 / (1 + 10 ** ((lose.rating - win.rating) / 400))
         loserval = 1 - winnerval
 
-        winner.rating += 20 * (1 - winnerval)
-        winner.fightswon += 1
-        loser.rating += 20 * (0 - loserval)
-        loser.fightslost += 1
+        win.rating += 20 * (1 - winnerval)
+        win.fightswon += 1
+        lose.rating += 20 * (0 - loserval)
+        lose.fightslost += 1
 
-        loser.save()
-        winner.save()
+        lose.save()
+        win.save()
