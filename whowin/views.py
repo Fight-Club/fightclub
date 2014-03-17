@@ -22,7 +22,9 @@ class FightView(FormView):
 
         a = Fighter.objects.get(id=self.kwargs['f1'])
         b = Fighter.objects.get(id=self.kwargs['f2'])
-        self.fight = Fight(member1=a, member2=b)
+        self.fight = Fight(member1=a, member2=b, member1_start_rank=a.rank,
+                           member2_start_rank=b.rank, member1_start_rating=a.rating,
+                           member2_start_rating=b.rating, user=self.request.user)
         choices = [(self.fight.member1.id, self.fight.member1.name),
                    (self.fight.member2.id, self.fight.member2.name)]
         kwargs = super(FightView, self).get_form_kwargs()
