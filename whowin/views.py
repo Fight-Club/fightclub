@@ -41,14 +41,22 @@ class FightView(FormView):
         else:
             lose = self.fight.member1
         self.fight.rankupdate(win)
-        self.fight.save()
-        self.fight.member1_end_rank = self.fight.member1.rank
         self.fight.member1_end_rating = self.fight.member1.rating
-        self.fight.member2_end_rank = self.fight.member2.rank
         self.fight.member2_end_rating = self.fight.member2.rating
         self.fight.winner = win
         self.fight.loser = lose
         self.fight.save()
+
+        fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
+        for fighter in fighterlist:
+            r = fighterlist.index(fighter)
+            r += 1
+            fighter.rank = r
+            fighter.save()
+        self.fight.member1_end_rank = self.fight.member1.rank
+        self.fight.member2_end_rank = self.fight.member2.rank
+        self.fight.save()
+
         return super(FightView, self).form_valid(form)
 
 
@@ -59,19 +67,13 @@ class TopTenView(ListView):
         r += 1
         fighter.rank = r
         fighter.save()
-    queryset = Fighter.objects.order_by('rank')[:10]
+    queryset = Fighter.objects.order_by('-rating')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/topten.html'
 
 
 class BottomTenView(ListView):
-    fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
-    for fighter in fighterlist:
-        r = fighterlist.index(fighter)
-        r += 1
-        fighter.rank = r
-        fighter.save()
-    queryset = Fighter.objects.order_by('-rank')[:10]
+    queryset = Fighter.objects.order_by('rating')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/bottomten.html'
 
