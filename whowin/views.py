@@ -61,12 +61,6 @@ class FightView(FormView):
 
 
 class TopTenView(ListView):
-    fighterlist = list(Fighter.objects.order_by('-rating', 'name'))
-    for fighter in fighterlist:
-        r = fighterlist.index(fighter)
-        r += 1
-        fighter.rank = r
-        fighter.save()
     queryset = Fighter.objects.order_by('-rating')[:10]
     context_object_name = 'fighter_list'
     template_name = 'whowin/topten.html'
