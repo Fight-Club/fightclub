@@ -58,7 +58,7 @@ class Migration(SchemaMigration):
                       keep_default=False)
 
         # Adding field 'Fight.member2_endnd_rank'
-        db.add_column(u'whowin_fight', 'member2_endnd_rank',
+        db.add_column(u'whowin_fight', 'member2_end_rank',
                       self.gf('django.db.models.fields.IntegerField')(null=True, blank=True),
                       keep_default=False)
 

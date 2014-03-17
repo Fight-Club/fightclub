@@ -36,7 +36,7 @@ class Fight(models.Model):
     member1_start_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     member1_end_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     member2_start_rank = models.IntegerField(null=True, blank=True)
-    member2_endnd_rank = models.IntegerField(null=True, blank=True)
+    member2_end_rank = models.IntegerField(null=True, blank=True)
     member2_start_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     member2_end_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
 
@@ -51,8 +51,10 @@ class Fight(models.Model):
     def rankupdate(self, win):
         if win == self.member1:
             lose = self.member2
+            win = self.member1
         else:
             lose = self.member1
+            win = self.member2
 
         winnerval = 1 / (1 + 10 ** ((lose.rating - win.rating) / 400))
         loserval = 1 - winnerval
@@ -61,6 +63,5 @@ class Fight(models.Model):
         win.fightswon += 1
         lose.rating += 20 * (0 - loserval)
         lose.fightslost += 1
-
         lose.save()
         win.save()
