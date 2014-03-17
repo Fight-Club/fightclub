@@ -46,7 +46,7 @@ class Fight(models.Model):
     end = models.DateTimeField(null=True, blank=True, auto_now=True)
 
     def __unicode__(self):
-        return '%s - %s v %s' % (self.start, self.winner, self.loser)
+        return '%s - %s v %s' % (self.start, self.member1, self.member2)
 
     def rankupdate(self, win):
         if win == self.member1:

@@ -33,9 +33,16 @@ class FightView(FormView):
         return form
 
     def form_valid(self, form):
-        winner = Fighter.objects.get(
+        win = Fighter.objects.get(
             id=form.cleaned_data['who_would_win_in_a_fight_between'])
-        self.fight.rankupdate(winner)
+        if win == self.fight.member1:
+            lose = self.fight.member2
+        else:
+            lose = self.fight.member1
+        self.fight.winner = win
+        self.fight.loser = lose
+        self.fight.save()
+        self.fight.rankupdate(win)
         return super(FightView, self).form_valid(form)
 
 
