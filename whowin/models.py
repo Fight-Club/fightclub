@@ -29,11 +29,24 @@ class Fighter(models.Model):
 class Fight(models.Model):
     member1 = models.ForeignKey(Fighter, related_name='fighter_1')
     member2 = models.ForeignKey(Fighter, related_name='fighter_2')
-    start = models.DateTimeField(auto_now_add=True, default=datetime.now())
-    end = models.DateTimeField(auto_now=True, default=datetime.now())
+
+    winner = models.ForeignKey(Fighter, related_name='winner', null=True, blank=True)
+    winner_start_rank = models.IntegerField(null=True, blank=True)
+    winner_end_rank = models.IntegerField(null=True, blank=True)
+    winner_start_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+    winner_end_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+
+    loser = models.ForeignKey(Fighter, related_name='loser', null=True, blank=True)
+    loser_start_rank = models.IntegerField(null=True, blank=True)
+    loser_endnd_rank = models.IntegerField(null=True, blank=True)
+    loser_start_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+    loser_end_rating = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+
+    start = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    end = models.DateTimeField(null=True, blank=True, auto_now=True)
 
     def __unicode__(self):
-        return '%s v %s' % (self.member1, self.member2)
+        return '%s - %s v %s' % (self.start, self.winner, self.loser)
 
     def rankupdate(self, winner):
         if winner == self.member1:
