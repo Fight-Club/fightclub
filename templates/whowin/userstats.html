@@ -8,10 +8,9 @@
 
 {% block banner %}
     {% block content %}
-        <h2>Stats</h2>
+        <h2>{{user}} Stats</h2>
         <ul>
             <li>{% trans "Total Fights Fought: " %}{{total}}</li>
-            <li>{% trans "Number of Fighters: " %}{{numfighters}}</li>
         </ul>
     {% endblock %}
 {% endblock %}
