@@ -120,14 +120,15 @@ def home_view(request):
     return HttpResponseRedirect(reverse('fight', kwargs={'f1': fi1.id,
                                                          'f2': fi2.id
                                                          }))
+
+
 class UserStatsView(TemplateView):
     template_name = 'whowin/fighterlist.html'
 
     def get_context_data(self, **kwargs):
-        all_fights = Fight.objects.filter(user=self.request.user)
+        all_fights = list(Fight.objects.filter(user=self.request.user))
 
         context = super(StatsView, self).get_context_data(**kwargs)
         context['user'] = self.request.user
-        context['total'] = total
-        context['numfighters'] = num
+        context['total'] = len(all_fights)
         return context
