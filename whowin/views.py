@@ -3,6 +3,7 @@ from whowin.forms import FighterSelectForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from random import randint
 
@@ -124,16 +125,20 @@ def home_view(request):
 
 
 class UserStatsView(TemplateView):
-    if self.request.user.is_authenticated():
-        template_name = 'whowin/userstats.html'
 
-        def get_context_data(self, **kwargs):
-            all_fights = list(Fight.objects.filter(user=self.request.user))
+    def dispatch(self, request, *args, **kwargs):
 
-            context = super(UserStatsView, self).get_context_data(**kwargs)
-            context['user'] = self.request.user
-            context['total'] = len(all_fights)
-            return context
+        if not self.request.user.is_authenticated():
+            return redirect('/account/login/')
+        else:
+            return super(UserStatsView, self).dispatch(request, *args, **kwargs)
 
-    else:
-        template_name = 'notloggedin.html'
+    template_name = 'whowin/userstats.html'
+
+    def get_context_data(self, **kwargs):
+        all_fights = list(Fight.objects.filter(user=self.request.user))
+
+        context = super(UserStatsView, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        context['total'] = len(all_fights)
+        return context
