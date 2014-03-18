@@ -120,3 +120,7 @@ def home_view(request):
     return HttpResponseRedirect(reverse('fight', kwargs={'f1': fi1.id,
                                                          'f2': fi2.id
                                                          }))
+class UserStatsView(ListView):
+    template_name = 'whowin/fighterlist.html'
+    context_object_name = 'all_fighters'
+    queryset = Fight.objects.filter(user=self.request.user)
