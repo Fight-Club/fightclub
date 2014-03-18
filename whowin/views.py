@@ -94,6 +94,7 @@ class AboutView(TemplateView):
 
 
 class StatsView(TemplateView):
+
     template_name = 'whowin/stats.html'
 
     def get_context_data(self, **kwargs):
@@ -123,12 +124,16 @@ def home_view(request):
 
 
 class UserStatsView(TemplateView):
-    template_name = 'whowin/userstats.html'
+    if self.request.user.is_authenticated():
+        template_name = 'whowin/userstats.html'
 
-    def get_context_data(self, **kwargs):
-        all_fights = list(Fight.objects.filter(user=self.request.user))
+        def get_context_data(self, **kwargs):
+            all_fights = list(Fight.objects.filter(user=self.request.user))
 
-        context = super(UserStatsView, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-        context['total'] = len(all_fights)
-        return context
+            context = super(UserStatsView, self).get_context_data(**kwargs)
+            context['user'] = self.request.user
+            context['total'] = len(all_fights)
+            return context
+
+    else:
+        template_name = 'notloggedin.html'
