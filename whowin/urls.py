@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from whowin.views import FightView, FighterListView, TopTenView, FighterDetailView, AboutView, BottomTenView, StatsView
+from whowin.views import FightView, FighterListView, TopTenView, FighterDetailView, AboutView, BottomTenView, StatsView, UserStatsView
 
 urlpatterns = patterns('',
                        url(r'^fight/(?P<f1>\w+)/(?P<f2>\w+)/$',
