@@ -123,12 +123,12 @@ def home_view(request):
 
 
 class UserStatsView(TemplateView):
-    template_name = 'whowin/fighterlist.html'
+    template_name = 'whowin/userstats.html'
 
     def get_context_data(self, **kwargs):
         all_fights = list(Fight.objects.filter(user=self.request.user))
 
-        context = super(StatsView, self).get_context_data(**kwargs)
+        context = super(UserStatsView, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         context['total'] = len(all_fights)
         return context
