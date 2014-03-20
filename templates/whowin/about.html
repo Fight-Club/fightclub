@@ -13,11 +13,17 @@
 	        <p class="lead">
 	        You may be wondering how your votes affect the overall rankings on the site, allow us to explain...
 	        <br><br>
-	        Every Fighter has a hidden rating that the general public never see. Every time you choose the winner of a Fight, the server uses a simple algorithm to update each Fighters rankings. The Fighters are listed in order of rating, and voila! We have our new Top10.
+	        Every Fighter has a hidden rating that the general public never see. Every time you choose the winner of a Fight, the server uses the <a href="http://en.wikipedia.org/wiki/Elo_rating_system" target="_blank" >ELO Algorithm</a> to update each Fighters rankings. The Fighters are listed in order of rating, and voila! We have our new Top10.
 	        <br><br>
 	        I'm intrigued, tell me more...
 	        <br><br>
-	        How about we do and example? You're given a fight between Gandalf and Han Solo, Gandalf has a hidden rating of 1720 and Han's is 1550.
+	        How about we do and example? You're given a fight between Gandalf and Han Solo, Gandalf has a hidden rating of 1720 and Han's is 1550. First, the algorithm calulates the probability of each Fighter winning based on these ratings.
+	        <br><br>
+			Probability Gandalf Wins = 1 &divide; (1 + 10^(( Han's Rating - Gandalf's Rating ) &divide; 400)) = 0.727<br>
+			Probability Han Wins = 1 &divide; (1 + 10^(( Gandalf's Rating - Han's Rating ) &divide; 400)) = 0.273
+			<br><br>
+			Now, lets pretend that you say Gandalf will win (obviously he would). He gains 20 x (1 - 0.727) = 5.46 points onto his rating and Han loses the same amount.<br>
+			In the unlikely even that Han won (is that even possible?..). He gains 20 x (1 - 0.273) = 14.54 points onto his rating and Gandalf loses that amount.
 	        </p>
 	    <h3>The Team</h3>
 	        <p class="lead">This website was created by James Campbell, Sam Ewen, Samuel Dunkley and Matt Jones as part of a project for their degree. They all currently study Mathematics at Cardiff University and have top banter because they're top lads.</p>
