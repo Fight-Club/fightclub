@@ -10,7 +10,10 @@
     {% block content %}
         <h2>{{user}}'s Stats</h2>
         <ul>
-            <li>{% trans "Total Fights Fought: " %}{{total}}</li>
+            {% trans "Total Fights Fought: " %}{{total}}
+            {% for fight in previous5 %}
+                <li>Winner - {{ fight.winner }}, Loser - {{ fight.loser }}</li>
+            {% endfor %}
         </ul>
     {% endblock %}
 {% endblock %}
