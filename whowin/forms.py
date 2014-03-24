@@ -12,7 +12,6 @@ class FighterSelectForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField()
-    sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
+    Fighter_Name = forms.CharField(max_length=100)
+    Description = forms.CharField(widget=forms.Textarea)
+    Email = forms.EmailField()

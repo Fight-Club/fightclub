@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
 {% extends "banner_base.html" %}
 
 {% load i18n %}
@@ -8,10 +9,15 @@
 
 {% block banner %}
     {% block content %}
-        <h2>Fight!</h2>
-                <form action="" method="post">{% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Submit" />
-                </form>
+        <h1>Contact Us</h1>
+
+        <h3>Make a suggestion</h3>
+            <p class="lead">
+            If you think we've missed out someone important from our list of Fighters, just send us a quick suggestion here. Make sure to include a decent description so we know who you're on about!
+            </p>
+            <form class="pure-form pure-form-stacked" action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="pure-button pure-button-primary" value="Send" />
+            </form>
     {% endblock %}
 {% endblock %}
