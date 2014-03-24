@@ -6,7 +6,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from random import randint
-from django.core.mail import send_mail
 
 
 class FightView(FormView):
