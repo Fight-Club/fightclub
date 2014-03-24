@@ -115,13 +115,15 @@ class ContactView(FormView):
     form_class = ContactForm
 
     def get_success_url(self):
-        return reverse('about')
+        return reverse('success')
 
     def form_valid(self, form):
         form.send_email()
         return super(ContactView, self).form_valid(form)
 
 
+class SuccessView(TemplateView):
+    template_name = 'whowin/success.html'
 
 def home_view(request):
     last = Fighter.objects.count() - 1
