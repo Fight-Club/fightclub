@@ -11,6 +11,8 @@
     {% block content %}
         <h1>Contact Us</h1>
 
+        <br>
+
         <h3>Make a suggestion</h3>
             <p class="lead">
             If you think we've missed out someone important from our list of Fighters, just send us a quick suggestion here. Make sure to include a decent description so we know who you're on about!
@@ -19,5 +21,20 @@
                 {{ form.as_p }}
                 <input type="submit" class="pure-button pure-button-primary" value="Send" />
             </form>
+
+        <br>
+
+        <h3>Found a bug?</h3>
+            <p class="lead">
+            If you've found something that doesn't seem to work correctly, or you have an amazing idea on how to improve the site, please head over to <a href="https://github.com/theref/fightclub/issues">GitHub</a> and create a new issue. We'll try and respond as soon as we can. Thanks you!
+            </p>
+
+        <br>
+
+        <h3>Get Involved</h3>
+            <p class="lead">
+            Finally, for those of you feel like writing a bit of code. Please feel free to fork our repository at <a href="https://github.com/theref/fightclub/">GitHub</a> and submit a pull request. We want as many people to get involved as possible.
+            </p>
+
     {% endblock %}
 {% endblock %}
