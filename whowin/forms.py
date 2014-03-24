@@ -10,6 +10,7 @@ class FighterSelectForm(forms.Form):
             widget=forms.RadioSelect,
             choices=choices)
 
+
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField()

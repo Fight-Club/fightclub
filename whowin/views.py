@@ -110,6 +110,16 @@ class StatsView(TemplateView):
         return context
 
 
+class ContactView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # Process the data in form.cleaned_data
+        return super(Contact, self).form_valid(form)
+
+
 def home_view(request):
     last = Fighter.objects.count() - 1
     index1 = randint(0, last)
