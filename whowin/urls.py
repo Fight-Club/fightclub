@@ -13,6 +13,6 @@ urlpatterns = patterns('',
                        url(r'^stats/$', StatsView.as_view(), name='stats'),
                        url(r'^about/$', AboutView.as_view(), name='about'),
                        url(r'^userstats/$', UserStatsView.as_view(), name='userstats'),
-                       url(r'^contact/$', ContactView.as_view(), name='userstats'),
+                       url(r'^contact/$', ContactView.as_view(), name='contact'),
 
                        )
