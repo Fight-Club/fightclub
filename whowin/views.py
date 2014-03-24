@@ -122,9 +122,6 @@ class ContactView(FormView):
         return super(ContactView, self).form_valid(form)
 
 
-class SuccessView(TemplateView):
-    template_name = 'whowin/contactsuccess.html'
-
 
 def home_view(request):
     last = Fighter.objects.count() - 1
