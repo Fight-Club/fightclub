@@ -1,4 +1,5 @@
 from django import forms
+from django.core.mail import send_mail
 
 
 class FighterSelectForm(forms.Form):
@@ -15,3 +16,7 @@ class ContactForm(forms.Form):
     Fighter_Name = forms.CharField(max_length=100)
     Description = forms.CharField(widget=forms.Textarea)
     Email = forms.EmailField()
+
+    def send_email(self):
+        # send email using the self.cleaned_data dictionary
+        pass
