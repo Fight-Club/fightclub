@@ -15,3 +15,7 @@ class ContactForm(forms.Form):
     Fighter_Name = forms.CharField(max_length=100)
     Description = forms.CharField(widget=forms.Textarea)
     Email = forms.EmailField()
+
+    def send_email(self):
+        # send email using the self.cleaned_data dictionary
+        pass

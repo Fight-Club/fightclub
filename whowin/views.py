@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from random import randint
+from django.core.mail import send_mail
 
 
 class FightView(FormView):
@@ -113,11 +114,14 @@ class StatsView(TemplateView):
 class ContactView(FormView):
     template_name = 'whowin/contact.html'
     form_class = ContactForm
-    success_url = '/thanks/'
+
+    def get_success_url(self):
+        return reverse('about')
 
     def form_valid(self, form):
-        # Process the data in form.cleaned_data
-        return super(Contact, self).form_valid(form)
+        form.send_email()
+        return super(ContactView, self).form_valid(form)
+
 
 
 def home_view(request):
