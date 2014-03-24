@@ -9,3 +9,9 @@ class FighterSelectForm(forms.Form):
         self.fields["who_would_win_in_a_fight_between"] = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=choices)
+
+
+class ContactForm(forms.Form):
+    Fighter_Name = forms.CharField(max_length=100)
+    Description = forms.CharField(widget=forms.Textarea)
+    Email = forms.EmailField()
