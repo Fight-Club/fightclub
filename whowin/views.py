@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView
-from whowin.forms import FighterSelectForm
+from whowin.forms import FighterSelectForm, ContactForm
 from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
@@ -111,7 +111,7 @@ class StatsView(TemplateView):
 
 
 class ContactView(FormView):
-    template_name = 'contact.html'
+    template_name = 'whowin/contact.html'
     form_class = ContactForm
     success_url = '/thanks/'
 
