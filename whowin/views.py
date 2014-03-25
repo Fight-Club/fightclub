@@ -1,11 +1,12 @@
+from random import randint
 from django.views.generic import ListView, DetailView, TemplateView
-from whowin.forms import FighterSelectForm, ContactForm
-from whowin.models import Fight, Fighter
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
-from random import randint
+from whowin.forms import FighterSelectForm, ContactForm
+from whowin.models import Fight, Fighter
+
 
 
 class FightView(FormView):

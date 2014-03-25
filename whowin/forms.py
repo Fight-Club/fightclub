@@ -17,6 +17,5 @@ class ContactForm(forms.Form):
     Description = forms.CharField(widget=forms.Textarea)
     Email = forms.EmailField()
 
-    def send_email(self):
-        # send email using the self.cleaned_data dictionary
-        pass
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
