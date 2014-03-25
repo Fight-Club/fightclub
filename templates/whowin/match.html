@@ -8,10 +8,14 @@
 
 {% block banner %}
     {% block content %}
-	    <h2>Fight!</h2>
+	    <h2>Fight! <a href="https://twitter.com/intent/tweet?button_hashtag=GandalfVsDumbledore&text=I%20love%20the%20FightClub" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #GanalfVsDumbledore</a>
+        </h2>
+
 	    <form action="" method="post">{% csrf_token %}
 		    {{ form.as_p }}
 		    <input type="submit" value="Submit" />
 		</form>
+
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	{% endblock %}
 {% endblock %}
