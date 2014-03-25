@@ -29,5 +29,5 @@ class ContactForm(forms.Form):
         from_email = settings.EMAIL_HOST_USER
         to_list = [user_email, settings.EMAIL_HOST_USER]
 
-        send_mail(subject, message, from_email, to_list, fail_silently=False)
+        send_mail(subject, message, from_email, to_list, fail_silently=True)
         pass
