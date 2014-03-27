@@ -11,7 +11,7 @@
         <h2>{{user}}'s Stats</h2>
         <ul>
             {% trans "Total Fights Fought: " %}{{total}}
-            {% for fight in previous5 %}
+            {% for fight in previous5 reversed %}
                 <li>Winner - {{ fight.winner }}, Loser - {{ fight.loser }}</li>
             {% endfor %}
         </ul>

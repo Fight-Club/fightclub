@@ -126,6 +126,7 @@ class ContactView(FormView):
 class SuccessView(TemplateView):
     template_name = 'whowin/success.html'
 
+
 def home_view(request):
     last = Fighter.objects.count() - 1
     index1 = randint(0, last)
@@ -141,6 +142,7 @@ def home_view(request):
 
 
 class UserStatsView(TemplateView):
+    template_name = 'whowin/userstats.html'
 
     def dispatch(self, request, *args, **kwargs):
 
@@ -148,8 +150,6 @@ class UserStatsView(TemplateView):
             return redirect('/account/login/')
         else:
             return super(UserStatsView, self).dispatch(request, *args, **kwargs)
-
-    template_name = 'whowin/userstats.html'
 
     def get_context_data(self, **kwargs):
         context = super(UserStatsView, self).get_context_data(**kwargs)
