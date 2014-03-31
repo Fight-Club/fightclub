@@ -11,9 +11,26 @@
         <h2>{{user}}'s Stats</h2>
         <ul>
             {% trans "Total Fights Fought: " %}{{total}}
+
+            <h3>Previous Fights</h3>
+            <div class="table-responsive">
+            <table class="table">
+            <tr>
+              <th>Date</th>
+              <th>Winner</th>
+              <th>Lose</th>
+            </tr>
+
             {% for fight in previous5 reversed %}
-                <li>Winner - {{ fight.winner }}, Loser - {{ fight.loser }}</li>
+                <tr>
+                  <td>{{ fight.start }}</td>
+                  <td>{{ fight.winner }}</td>
+                  <td>{{ fight.loser }}</td>
+                </tr>
             {% endfor %}
+            </table>
+            </div>
+
         </ul>
     {% endblock %}
 {% endblock %}
