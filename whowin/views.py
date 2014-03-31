@@ -100,11 +100,8 @@ class StatsView(TemplateView):
     template_name = 'whowin/stats.html'
 
     def get_context_data(self, **kwargs):
-        all_fighters = Fighter.objects.all()
-        total = 0
-        for member in all_fighters:
-            total += member.fightswon
-            num = Fighter.objects.count()
+        total = Fight.objects.count()
+        num = Fighter.objects.count()
         context = super(StatsView, self).get_context_data(**kwargs)
         context['total'] = total
         context['numfighters'] = num
