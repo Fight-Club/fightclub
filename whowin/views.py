@@ -84,6 +84,14 @@ class FighterDetailView(DetailView):
     model = Fighter
     template_name = 'whowin/fighterdetail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(FighterDetailView, self).get_context_data(**kwargs)
+        fightswon = Fight.objects.filter(winner=self.object).count()
+        fightslost = Fight.objects.filter(loser=self.object).count()
+        context['won'] = fightswon
+        context['lost'] = fightslost
+        return context
+
 
 class FighterListView(ListView):
     template_name = 'whowin/fighterlist.html'
@@ -100,9 +108,9 @@ class StatsView(TemplateView):
     template_name = 'whowin/stats.html'
 
     def get_context_data(self, **kwargs):
+        context = super(StatsView, self).get_context_data(**kwargs)
         total = Fight.objects.count()
         num = Fighter.objects.count()
-        context = super(StatsView, self).get_context_data(**kwargs)
         context['total'] = total
         context['numfighters'] = num
         return context
