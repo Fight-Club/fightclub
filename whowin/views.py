@@ -86,10 +86,20 @@ class FighterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(FighterDetailView, self).get_context_data(**kwargs)
+        data = []
+        for fight in Fight.objects.all():
+            if fight.member1 == self.object:
+                data.append(fight.member1_end_rating)
+            elif fight.member2 == self.object:
+                data.append(fight.member2_end_rating)
+            else:
+                pass
+
         fightswon = Fight.objects.filter(winner=self.object).count()
         fightslost = Fight.objects.filter(loser=self.object).count()
         context['won'] = fightswon
         context['lost'] = fightslost
+        context['ratings'] = data
         return context
 
 

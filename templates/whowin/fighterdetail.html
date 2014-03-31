@@ -16,5 +16,34 @@
 	            <li>Side: {{ fighter.get_side_display }}</li>
 	            <li>Description: {{ fighter.description|safe }}</li>
 	    </ul>
+	    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+		<head>
+		    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		    <script type="text/javascript">
+		      google.load("visualization", "1", {packages:["corechart"]});
+		      google.setOnLoadCallback(drawChart);
+		      function drawChart() {
+		        var data = new google.visualization.DataTable();
+				data.addColumn('number', 'count');
+				data.addColumn('number', 'ranking');
+				data.addColumn('number', 'average');
+				{% for i in ratings %}
+					data.addRows([
+					  [{{ forloop.counter }}, {{ i }}, 1600],
+					]);
+				{% endfor %}
+
+		        var options = {
+		          title: 'Ratings over time',
+		          curveType: 'function',
+		          legend: 'none'
+		        };
+
+		        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		        chart.draw(data, options);
+		      }
+		    </script>
+		</head>
 	{% endblock %}
+
 {% endblock %}
