@@ -170,5 +170,5 @@ class UserStatsView(TemplateView):
         context = super(UserStatsView, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         context['total'] = Fight.objects.filter(user=self.request.user).count()
-        context['previous5'] = Fight.objects.filter(user=self.request.user)[:5]
+        context['previous5'] = Fight.objects.filter(user=self.request.user).order_by('start').reverse()[:5]
         return context
