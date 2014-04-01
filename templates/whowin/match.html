@@ -17,11 +17,24 @@
             <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">Who are they?</button>
 
             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  ...
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Descriptions</h4>
+                        </div>
+                        <div class="modal-content">
+                            <h3>{{ m1.name }}</h3>
+                            <p class="lead">
+                            {{ m1.description }}
+                            </p>
+                            <h3>{{ m2.name }}</h3>
+                            <p class="lead">
+                            {{ m2.description }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
 
 		    <button type="submit" class="btn btn-action">Submit</button>

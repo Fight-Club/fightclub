@@ -17,6 +17,12 @@ class FightView(FormView):
     def get_success_url(self):
         return reverse('home')
 
+    def get_context_data(self, **kwargs):
+        context = super(FightView, self).get_context_data(**kwargs)
+        context['m1'] = Fighter.objects.get(id=self.kwargs['f1'])
+        context['m2'] = Fighter.objects.get(id=self.kwargs['f2'])
+        return context
+
     def get_form(self, form_class):
 
         if self.kwargs['f1'] == self.kwargs['f2']:
