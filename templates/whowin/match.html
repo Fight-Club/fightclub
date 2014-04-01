@@ -14,7 +14,17 @@
 	    <form class="form-inline" role="form" action="" method="post">
             {% csrf_token %}
 		    {{ form.as_p }}
-		    <button type="submit" class="btn btn-default">Submit</button>
+            <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">Who are they?</button>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  ...
+                </div>
+              </div>
+            </div>
+
+		    <button type="submit" class="btn btn-action">Submit</button>
 		</form>
 
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
