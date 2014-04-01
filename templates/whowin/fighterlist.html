@@ -9,7 +9,7 @@
 {% block banner %}
 	{% block content %}
 	    <h2>Fighters</h2>
-	    <ul>
+	    <ul class="list-inline">
 	        {% for fighter in object_list %}
 	            <li><a href="{% url 'detail' fighter.slug %}">{{ fighter.name }}</a></li>
 	        {% endfor %}
