@@ -25,7 +25,7 @@
 		      function drawChart() {
 		        var data = new google.visualization.DataTable();
 				data.addColumn('number', 'count');
-				data.addColumn('number', 'ranking');
+				data.addColumn('number', 'rating');
 				data.addColumn('number', 'average');
 				{% for i in ratings %}
 					data.addRows([
