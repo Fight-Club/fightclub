@@ -23,14 +23,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="myModalLabel">Descriptions</h4>
                         </div>
-                        <div class="modal-content">
+                        <div class="modal-body">
                             <h3>{{ m1.name }}</h3>
                             <p class="lead">
-                            {{ m1.description }}
+                            {{ m1.description|safe }}
                             </p>
                             <h3>{{ m2.name }}</h3>
                             <p class="lead">
-                            {{ m2.description }}
+                            {{ m2.description|safe }}
                             </p>
                         </div>
                     </div>
