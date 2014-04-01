@@ -11,33 +11,32 @@
 	    <h2>Fight! <a href="https://twitter.com/intent/tweet?button_hashtag=GandalfVsDumbledore&text=I%20love%20the%20FightClub" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #GanalfVsDumbledore</a>
         </h2>
 
+
 	    <form class="form-inline" role="form" action="" method="post">
             {% csrf_token %}
 		    {{ form.as_p }}
+		    <button type="submit" class="btn btn-action">Submit</button>
             <button class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">Who are they?</button>
-
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Descriptions</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h3>{{ m1.name }}</h3>
-                            <p class="lead">
-                            {{ m1.description|safe }}
-                            </p>
-                            <h3>{{ m2.name }}</h3>
-                            <p class="lead">
-                            {{ m2.description|safe }}
-                            </p>
-                        </div>
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Descriptions</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>{{ m1.name }}</h3>
+                        <p class="lead">
+                        {{ m1.description|safe }}
+                        </p>
+                        <h3>{{ m2.name }}</h3>
+                        <p class="lead">
+                        {{ m2.description|safe }}
+                        </p>
                     </div>
                 </div>
             </div>
-
-		    <button type="submit" class="btn btn-action">Submit</button>
+        </div>
 		</form>
 
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
