@@ -67,8 +67,11 @@ class FightView(FormView):
             r += 1
             fighter.rank = r
             fighter.save()
-        self.fight.member1_end_rank = self.fight.member1.rank
-        self.fight.member2_end_rank = self.fight.member2.rank
+
+        fighter1 = Fighter.objects.get(id=self.fight.member1.id)
+        fighter2 = Fighter.objects.get(id=self.fight.member2.id)
+        self.fight.member1_end_rank = fighter1.rank
+        self.fight.member2_end_rank = fighter2.rank
         self.fight.save()
 
         return super(FightView, self).form_valid(form)
