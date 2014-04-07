@@ -1,4 +1,4 @@
-from random import randint
+from random import sample
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
@@ -152,13 +152,7 @@ class SuccessView(TemplateView):
 
 
 def home_view(request):
-    last = Fighter.objects.count() - 1
-    index1 = randint(0, last)
-    index2 = randint(0, last - 1)
-    if index2 == index1:
-        index2 = last
-    fi1 = Fighter.objects.all()[index1]
-    fi2 = Fighter.objects.all()[index2]
+    fi1, fi2 = sample(Fighter.objects.all(), 2)
 
     return HttpResponseRedirect(reverse('fight', kwargs={'f1': fi1.id,
                                                          'f2': fi2.id
