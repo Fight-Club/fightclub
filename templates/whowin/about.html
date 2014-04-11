@@ -32,9 +32,9 @@
 	        <br><br>
 	        How about we do an example? You're given a fight between Gandalf and Han Solo, Gandalf has a hidden rating of 1720 and Han's is 1550. First, the algorithm calulates the probability of each Fighter winning based on these ratings.
 	        <br><br>
-			Probability Gandalf Wins = \( \frac{1}{1 + 10^{\frac{Hans Rating - Gandalfs Rating}{400}}} = 0.727 \)
+			Probability Gandalf Wins = \( \frac{1}{1 + 10^{\frac{\text{Hans Rating - Gandalfs Rating}}{400}}} = 0.727 \)
 			<br><br>
-			Probability Han Wins = \( \frac{1}{1 + 10^{\frac{Gandalfs Rating - Hans Rating}{400}}} = 0.273 \)
+			Probability Han Wins = \( \frac{1}{1 + 10^{\frac{\text{Gandalfs Rating - Hans Rating}}{400}}} = 0.273 \)
 			<br><br>
 			Now, lets pretend that you say Gandalf will win (obviously he would). He gains \( 20(1 - 0.727) = 5.46 \) points onto his rating and Han loses the same amount.<br>
 			In the unlikely even that Han won (is that even possible?..). He gains \( 20(1 - 0.273) = 14.54 \) points onto his rating and Gandalf loses that amount.
