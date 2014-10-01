@@ -8,7 +8,6 @@ from whowin.forms import FighterSelectForm, ContactForm
 from whowin.models import Fight, Fighter
 
 
-
 class FightView(FormView):
 
     fight = None
