@@ -120,6 +120,14 @@ class FighterListView(ListView):
 class AboutView(TemplateView):
     template_name = 'whowin/about.html'
 
+    import matplotlib.pyplot as plt, mpld3
+    fig = plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
+    self.html_fig = mpld3.fig_to_html(fig)
+
+    def get_context_data(self, **kwargs):
+        context = {'theFig' : self.html_fig}
+        return context
+
 
 class StatsView(TemplateView):
 
