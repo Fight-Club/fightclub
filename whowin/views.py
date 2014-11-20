@@ -120,12 +120,38 @@ class FighterListView(ListView):
 class AboutView(TemplateView):
     template_name = 'whowin/about.html'
 
-    import matplotlib.pyplot as plt, mpld3
-    fig = plt.plot([3,1,4,1,5], 'ks-', mec='w', mew=5, ms=20)
-    self.html_fig = mpld3.fig_to_html(fig)
+
 
     def get_context_data(self, **kwargs):
-        context = {'theFig' : self.html_fig}
+        import matplotlib.pyplot as plt, mpld3
+        import numpy as np
+        from mpld3 import plugins
+
+        fig, ax = plt.subplots()
+
+        x = np.linspace(-2, 2, 20)
+        y = x[:, None]
+        X = np.zeros((20, 20, 4))
+
+        X[:, :, 0] = np.exp(- (x - 1) ** 2 - (y) ** 2)
+        X[:, :, 1] = np.exp(- (x + 0.71) ** 2 - (y - 0.71) ** 2)
+        X[:, :, 2] = np.exp(- (x + 0.71) ** 2 - (y + 0.71) ** 2)
+        X[:, :, 3] = np.exp(-0.25 * (x ** 2 + y ** 2))
+
+        im = ax.imshow(X, extent=(10, 20, 10, 20),
+                       origin='lower', zorder=1, interpolation='nearest')
+        fig.colorbar(im, ax=ax)
+
+        ax.set_title('An Image', size=20)
+
+        plugins.connect(fig, plugins.MousePosition(fontsize=14))
+
+        html_fig = mpld3.fig_to_html(fig)
+
+        print html_fig
+
+        context = {'theFig' : html_fig}
+
         return context
 
 
