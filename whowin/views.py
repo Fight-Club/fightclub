@@ -6,6 +6,9 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from whowin.forms import FighterSelectForm, ContactForm
 from whowin.models import Fight, Fighter
+import matplotlib.pyplot as plt, mpld3
+import numpy as np
+from mpld3 import plugins
 
 
 class FightView(FormView):
@@ -94,12 +97,15 @@ class FighterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(FighterDetailView, self).get_context_data(**kwargs)
-        data = []
+        ratings = []
+        dates = []
         for fight in Fight.objects.all():
             if fight.member1 == self.object:
-                data.append(fight.member1_end_rating)
+                ratings.append(fight.member1_end_rating)
+                dates.append(fight.end)
             elif fight.member2 == self.object:
-                data.append(fight.member2_end_rating)
+                ratings.append(fight.member2_end_rating)
+                dates.append(fight.end)
             else:
                 pass
 
@@ -107,7 +113,11 @@ class FighterDetailView(DetailView):
         fightslost = Fight.objects.filter(loser=self.object).count()
         context['won'] = fightswon
         context['lost'] = fightslost
-        context['ratings'] = data
+
+        fig, ax = plt.subplots()
+        ax.plot(dates, ratings)
+        rating_fig = mpld3.fig_to_html(fig)
+        context = {'ratingfig': rating_fig}
         return context
 
 
@@ -120,38 +130,24 @@ class FighterListView(ListView):
 class AboutView(TemplateView):
     template_name = 'whowin/about.html'
 
-
-
     def get_context_data(self, **kwargs):
-        import matplotlib.pyplot as plt, mpld3
-        import numpy as np
-        from mpld3 import plugins
-
         fig, ax = plt.subplots()
-
         x = np.linspace(-2, 2, 20)
         y = x[:, None]
         X = np.zeros((20, 20, 4))
-
         X[:, :, 0] = np.exp(- (x - 1) ** 2 - (y) ** 2)
         X[:, :, 1] = np.exp(- (x + 0.71) ** 2 - (y - 0.71) ** 2)
         X[:, :, 2] = np.exp(- (x + 0.71) ** 2 - (y + 0.71) ** 2)
         X[:, :, 3] = np.exp(-0.25 * (x ** 2 + y ** 2))
-
         im = ax.imshow(X, extent=(10, 20, 10, 20),
                        origin='lower', zorder=1, interpolation='nearest')
         fig.colorbar(im, ax=ax)
-
         ax.set_title('An Image', size=20)
-
         plugins.connect(fig, plugins.MousePosition(fontsize=14))
 
         html_fig = mpld3.fig_to_html(fig)
 
-        print html_fig
-
-        context = {'theFig' : html_fig}
-
+        context = {'theFig': html_fig}
         return context
 
 
