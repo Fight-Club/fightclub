@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Category, Fighter, Fight
+from core.models import Category, Fighter, Fight
 
 
 class CategorySerializer(serializers.ModelSerializer):

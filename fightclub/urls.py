@@ -14,6 +14,7 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from core.views import FighterViewSet
 from rest_framework.routers import DefaultRouter
 from django.conf.urls import patterns, include
 from django.contrib import admin
@@ -21,4 +22,5 @@ from django.contrib import admin
 urlpatterns = patterns('', (r'^admin/', include(admin.site.urls)),)
 
 router = DefaultRouter()
+router.register(r'fighters', FighterViewSet)
 urlpatterns += router.urls
