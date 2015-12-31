@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -17,12 +18,12 @@ class Fighter(models.Model):
 
 
 class Fight(models.Model):
-    Fighter1 = models.ForeignKey(Fighter, related_name='fighter1')
-    Fighter2 = models.ForeignKey(Fighter, related_name='fighter2')
-
-    Fighter1_start_rating = models.DecimalField(max_digits=8, decimal_places=2)
-    Fighter2_start_rating = models.DecimalField(max_digits=8, decimal_places=2)
+    user = models.ForeignKey(User, null=True, blank=True)
 
     winner = models.ForeignKey(Fighter, related_name='winner')
     loser = models.ForeignKey(Fighter, related_name='loser')
-    completed_datetime = models.DateTimeField(auto_now_add=True)
+
+    winner_start_rating = models.DecimalField(max_digits=8, decimal_places=2)
+    loser_start_rating = models.DecimalField(max_digits=8, decimal_places=2)
+
+    completed_timestamp = models.DateTimeField(auto_now_add=True)
