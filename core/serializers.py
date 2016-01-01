@@ -25,6 +25,9 @@ class FighterSerializer(serializers.ModelSerializer):
 
 
 class FightSerializer(serializers.ModelSerializer):
+    winner = serializers.StringRelatedField(read_only=True)
+    loser = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Fight
         fields = (
