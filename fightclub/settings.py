@@ -36,6 +36,11 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+]
+
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.

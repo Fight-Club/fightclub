@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=32)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name_plural = "categories"
 
@@ -15,6 +18,9 @@ class Fighter(models.Model):
     description = models.CharField(max_length=1024)
     rating = models.DecimalField(default=1600, max_digits=8, decimal_places=2)
     reference = models.URLField()
+
+    def __str__(self):
+        return self.name
 
 
 class Fight(models.Model):
