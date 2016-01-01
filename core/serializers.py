@@ -11,6 +11,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class FighterSerializer(serializers.ModelSerializer):
+    categories = serializers.StringRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Fighter
         fields = (
